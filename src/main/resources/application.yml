@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: auction-api
+  datasource:
+    url: jdbc:postgresql://localhost:5432/auction
+    username: auction
+    password: auction
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
+
+aws:
+  endpoint: http://localhost:4566
+  region: us-east-1
+
+logging:
+  level:
+    org.hibernate.SQL: warn
