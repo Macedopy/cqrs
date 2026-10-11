@@ -75,6 +75,43 @@ public class Auction extends AggregateRoot {
         return new Auction(command, id, now);
     }
 
+    private Auction(UUID id, long version, UUID sellerId, String title, String description, String category,
+                    int lotQuantity, String lotUnit, Money startingPrice, Money minimumIncrement, Money reservePrice,
+                    Money buyNowPrice, Instant startsAt, Instant endsAt, long antiSnipingSeconds,
+                    AuctionStatus status, Money currentPrice, UUID highestBidderId, List<Bid> bids) {
+        super(id, version);
+        this.sellerId = sellerId;
+        this.title = title;
+        this.description = description;
+        this.category = category;
+        this.lotQuantity = lotQuantity;
+        this.lotUnit = lotUnit;
+        this.startingPrice = startingPrice;
+        this.minimumIncrement = minimumIncrement;
+        this.reservePrice = reservePrice;
+        this.buyNowPrice = buyNowPrice;
+        this.startsAt = startsAt;
+        this.endsAt = endsAt;
+        this.antiSnipingSeconds = antiSnipingSeconds;
+        this.status = status;
+        this.currentPrice = currentPrice;
+        this.highestBidderId = highestBidderId;
+        this.bids.addAll(bids);
+    }
+
+    /**
+     * Rebuilds the aggregate from persisted state without emitting any event.
+     */
+    public static Auction reconstitute(UUID id, long version, UUID sellerId, String title, String description,
+                                       String category, int lotQuantity, String lotUnit, Money startingPrice,
+                                       Money minimumIncrement, Money reservePrice, Money buyNowPrice,
+                                       Instant startsAt, Instant endsAt, long antiSnipingSeconds,
+                                       AuctionStatus status, Money currentPrice, UUID highestBidderId, List<Bid> bids) {
+        return new Auction(id, version, sellerId, title, description, category, lotQuantity, lotUnit,
+                startingPrice, minimumIncrement, reservePrice, buyNowPrice, startsAt, endsAt, antiSnipingSeconds,
+                status, currentPrice, highestBidderId, bids == null ? List.of() : bids);
+    }
+
     public void open(Instant now) {
         if (status != AuctionStatus.DRAFT) {
             throw new InvalidStateTransitionException("Only draft auctions can be opened");

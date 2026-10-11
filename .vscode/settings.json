@@ -1,0 +1,7 @@
+{
+  "java.project.outputPath": "target/ide-classes",
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.import.exclusions": [
+    "**/target/**"
+  ]
+}
