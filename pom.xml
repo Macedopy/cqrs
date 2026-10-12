@@ -84,6 +84,11 @@
 	</dependencies>
 
 	<build>
+		<!-- Build outside "target" on purpose: the VS Code Java extension
+		     (Eclipse JDT) compiles into target/classes and can leave broken
+		     class files behind, which Maven then treats as up to date.
+		     Keeping Maven in "build" makes the two tools independent. -->
+		<directory>${project.basedir}/build</directory>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

@@ -1,5 +1,6 @@
 HELP.md
 target/
+build/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -24,3 +25,11 @@ target/
 !.vscode/settings.json
 ### Local test artifacts ###
 *.log
+
+cp.txt
+
+### Application logs ###
+run.out
+run.err
+script.out
+script.err

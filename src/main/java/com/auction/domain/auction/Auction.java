@@ -136,7 +136,10 @@ public class Auction extends AggregateRoot {
         if (!now.isBefore(endsAt)) {
             throw new InvalidBidException("The auction has already ended");
         }
-        Money minimum = bids.isEmpty() ? startingPrice : currentPrice.add(minimumIncrement);
+        // Base the minimum on the current price, not on the bid history: after
+// reconstitution from the database the bid list is empty, and using
+// bids.isEmpty() here would wrongly accept any bid above the starting price.
+Money minimum = currentPrice != null ? currentPrice.add(minimumIncrement) : startingPrice;
         if (!amount.isGreaterThanOrEqual(minimum)) {
             throw new InvalidBidException("Bid must be at least " + minimum.amount().toPlainString() + " " + minimum.currency());
         }

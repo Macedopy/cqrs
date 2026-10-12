@@ -29,7 +29,7 @@ public class BidEntity {
     @Column(name = "placed_at", nullable = false)
     private Instant placedAt;
 
-    protected BidEntity() {
+    public BidEntity() {
     }
 
     public BidEntity(UUID id, AuctionEntity auction, UUID bidderId, BigDecimal amount, String currency, Instant placedAt) {
@@ -43,6 +43,12 @@ public class BidEntity {
 
     public UUID getId() { return id; }
     public AuctionEntity getAuction() { return auction; }
+    public void setId(UUID id) { this.id = id; }
+    public void setAuction(AuctionEntity auction) { this.auction = auction; }
+    public void setBidderId(UUID bidderId) { this.bidderId = bidderId; }
+    public void setAmount(BigDecimal amount) { this.amount = amount; }
+    public void setCurrency(String currency) { this.currency = currency; }
+    public void setPlacedAt(Instant placedAt) { this.placedAt = placedAt; }
     public UUID getBidderId() { return bidderId; }
     public BigDecimal getAmount() { return amount; }
     public String getCurrency() { return currency; }

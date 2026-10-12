@@ -48,7 +48,7 @@ public class AuctionSummaryEntity {
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 
-    protected AuctionSummaryEntity() {
+    public AuctionSummaryEntity() {
     }
 
     public AuctionSummaryEntity(UUID auctionId, UUID sellerId, String title, String category, String status,
@@ -93,6 +93,19 @@ public class AuctionSummaryEntity {
         this.lastEventVersion = eventVersion;
         this.updatedAt = Instant.now();
     }
+
+    public void setAuctionId(UUID auctionId) { this.auctionId = auctionId; }
+    public void setSellerId(UUID sellerId) { this.sellerId = sellerId; }
+    public void setTitle(String title) { this.title = title; }
+    public void setCategory(String category) { this.category = category; }
+    public void setStatus(String status) { this.status = status; }
+    public void setCurrency(String currency) { this.currency = currency; }
+    public void setCurrentPrice(BigDecimal currentPrice) { this.currentPrice = currentPrice; }
+    public void setHighestBidderId(UUID highestBidderId) { this.highestBidderId = highestBidderId; }
+    public void setBidCount(int bidCount) { this.bidCount = bidCount; }
+    public void setEndsAt(Instant endsAt) { this.endsAt = endsAt; }
+    public void setLastEventVersion(long lastEventVersion) { this.lastEventVersion = lastEventVersion; }
+    public void setUpdatedAt(Instant updatedAt) { this.updatedAt = updatedAt; }
 
     public UUID getAuctionId() { return auctionId; }
     public UUID getSellerId() { return sellerId; }

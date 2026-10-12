@@ -79,7 +79,8 @@ public class AuctionEntity {
     @Column(name = "created_at", nullable = false)
     private Instant createdAt;
 
-    protected AuctionEntity() {
+    public AuctionEntity() {
+        this.createdAt = Instant.now();
     }
 
     public AuctionEntity(UUID id, UUID sellerId, String title, String description, String category,
@@ -128,6 +129,20 @@ public class AuctionEntity {
     public void setAggregateVersion(long aggregateVersion) { this.aggregateVersion = aggregateVersion; }
     public Instant getCreatedAt() { return createdAt; }
 
+    public void setId(UUID id) { this.id = id; }
+    public void setSellerId(UUID sellerId) { this.sellerId = sellerId; }
+    public void setTitle(String title) { this.title = title; }
+    public void setDescription(String description) { this.description = description; }
+    public void setCategory(String category) { this.category = category; }
+    public void setLotQuantity(int lotQuantity) { this.lotQuantity = lotQuantity; }
+    public void setLotUnit(String lotUnit) { this.lotUnit = lotUnit; }
+    public void setStartingPrice(BigDecimal startingPrice) { this.startingPrice = startingPrice; }
+    public void setCurrency(String currency) { this.currency = currency; }
+    public void setMinimumIncrement(BigDecimal minimumIncrement) { this.minimumIncrement = minimumIncrement; }
+    public void setReservePrice(BigDecimal reservePrice) { this.reservePrice = reservePrice; }
+    public void setBuyNowPrice(BigDecimal buyNowPrice) { this.buyNowPrice = buyNowPrice; }
+    public void setStartsAt(Instant startsAt) { this.startsAt = startsAt; }
+    public void setAntiSnipingSeconds(long antiSnipingSeconds) { this.antiSnipingSeconds = antiSnipingSeconds; }
     public void setStatus(AuctionStatus status) { this.status = status; }
     public void setCurrentPrice(BigDecimal currentPrice) { this.currentPrice = currentPrice; }
     public void setHighestBidderId(UUID highestBidderId) { this.highestBidderId = highestBidderId; }

@@ -37,7 +37,8 @@ public class AuctionEventsConsumer {
         ReceiveMessageResponse response = sqsClient.receiveMessage(r -> r
                 .queueUrl(queueUrl)
                 .maxNumberOfMessages(10)
-                .waitTimeSeconds(2));
+                .waitTimeSeconds(2)
+                .messageAttributeNames("All"));
         for (Message message : response.messages()) {
             try {
                 String eventType = message.messageAttributes().get("event_type") != null
